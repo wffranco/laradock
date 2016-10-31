@@ -10,7 +10,7 @@
 #    https://hub.docker.com/r/laradock/workspace/tags/
 #
 
-FROM laradock/workspace:1.1
+FROM studysocial/laradock-workspace-5.6:latest
 
 MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 
@@ -19,7 +19,7 @@ MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 # Mandatory Software's Installation
 #--------------------------------------------------------------------------
 #
-# Mandatory Software's such as ("php7.0-cli", "git", "vim", ....) are
+# Mandatory Software's such as ("php5.6-cli", "git", "vim", ....) are
 # installed on the base image 'laradock/workspace' image. If you want
 # to add more Software's or remove existing one, you need to edit the
 # base image (https://github.com/LaraDock/workspace).
@@ -46,7 +46,7 @@ ARG PUID=1000
 ARG PGID=1000
 RUN groupadd -g $PGID laradock && \
     useradd -u $PUID -g laradock -m laradock
-    
+
 #####################################
 # Set Timezone
 #####################################
@@ -89,12 +89,12 @@ ARG INSTALL_XDEBUG=false
 RUN if [ ${INSTALL_XDEBUG} = true ]; then \
     # Load the xdebug extension only with phpunit commands
     apt-get update && \
-    apt-get install -y --force-yes php7.0-xdebug && \
-    sed -i 's/^/;/g' /etc/php/7.0/cli/conf.d/20-xdebug.ini && \
+    apt-get install -y --force-yes php5.6-xdebug && \
+    sed -i 's/^/;/g' /etc/php/5.6/cli/conf.d/20-xdebug.ini && \
     echo "alias phpunit='php -dzend_extension=xdebug.so /var/www/laravel/vendor/bin/phpunit'" >> ~/.bashrc \
 ;fi
 # ADD for REMOTE debugging
-COPY ./xdebug.ini /etc/php/7.0/cli/conf.d/xdebug.ini
+COPY ./xdebug.ini /etc/php/5.6/cli/conf.d/xdebug.ini
 
 #####################################
 # ssh:
@@ -125,7 +125,7 @@ ENV INSTALL_MONGO ${INSTALL_MONGO}
 RUN if [ ${INSTALL_MONGO} = true ]; then \
     # Install the mongodb extension
     pecl install mongodb && \
-    echo "extension=mongodb.so" >> /etc/php/7.0/cli/php.ini \
+    echo "extension=mongodb.so" >> /etc/php/5.6/cli/php.ini \
 ;fi
 
 #####################################
@@ -214,7 +214,7 @@ ARG INSTALL_AEROSPIKE_EXTENSION=true
 ENV INSTALL_AEROSPIKE_EXTENSION ${INSTALL_AEROSPIKE_EXTENSION}
 
 # Copy aerospike configration for remote debugging
-COPY ./aerospike.ini /etc/php/7.0/cli/conf.d/aerospike.ini
+COPY ./aerospike.ini /etc/php/5.6/cli/conf.d/aerospike.ini
 
 RUN if [ ${INSTALL_AEROSPIKE_EXTENSION} = true ]; then \
     # Install the php aerospike extension
@@ -231,7 +231,7 @@ RUN if [ ${INSTALL_AEROSPIKE_EXTENSION} = true ]; then \
 ;fi
 
 RUN if [ ${INSTALL_AEROSPIKE_EXTENSION} = false ]; then \
-    rm /etc/php/7.0/cli/conf.d/aerospike.ini \
+    rm /etc/php/5.6/cli/conf.d/aerospike.ini \
 ;fi
 
 #
