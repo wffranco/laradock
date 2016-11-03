@@ -16,6 +16,7 @@ services:
                 - INSTALL_AEROSPIKE_EXTENSION=false
                 - COMPOSER_GLOBAL_INSTALL=false
                 - INSTALL_WORKSPACE_SSH=false
+                - INSTALL_REDIS_EXTENSION=true
                 - PUID=1000
                 - PGID=1000
                 - NODE_VERSION=stable
@@ -41,7 +42,7 @@ services:
                 - INSTALL_MEMCACHED=false
                 - INSTALL_OPCACHE=false
                 - INSTALL_AEROSPIKE_EXTENSION=false
-				- CODEIGNITER=false
+                - INSTALL_REDIS_EXTENSION=true
             dockerfile: Dockerfile-56
         volumes_from:
             - volumes_source
@@ -55,6 +56,17 @@ services:
         environment:
             # IMPORTANT: Set the Remote Interpreter entry matching name to `laravel`
             - PHP_IDE_CONFIG=serverName=laravel
+
+
+    elk:
+        build: ./elk
+        container_name: elk
+        ports:
+          - "5601:5601"
+          - "9200:9200"
+          - "5044:5044"
+        volumes_from:
+            - volumes_data
 
 ### Nginx Server Container ##################################
 
@@ -310,6 +322,8 @@ services:
             - ./data/sessions:/sessions
             - ./data/caddy:/root/.caddy
             - ./data/elasticsearch/data:/usr/share/elasticsearch/data
-            - ./data/elasticsearch/pkugins:/usr/share/elasticsearch/pkugins
+            - ./data/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+            - ./elk/02-redis-input.conf:/etc/logstash/conf.d/02-redis-input.conf
+            - ./elk/30-output.conf:/etc/logstash/conf.d/30-output.conf
 
 ### Add more Containers below ###############################

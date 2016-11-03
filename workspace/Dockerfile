@@ -96,6 +96,19 @@ RUN if [ ${INSTALL_XDEBUG} = true ]; then \
 # ADD for REMOTE debugging
 COPY ./xdebug.ini /etc/php/5.6/cli/conf.d/xdebug.ini
 
+
+#####################################
+# Redis Client:
+#####################################
+
+ARG INSTALL_REDIS_EXTENSION=false
+RUN if [ ${INSTALL_REDIS_EXTENSION} = true ]; then \
+    apt-get update && \
+    apt-get install -y php5.6-redis \
+;fi
+
+#COPY ./xdebug.ini /etc/php/5.6/cli/conf.d/xdebug.ini
+
 #####################################
 # ssh:
 #####################################

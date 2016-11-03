@@ -50,6 +50,22 @@ RUN if [ ${INSTALL_XDEBUG} = true ]; then \
 # Copy xdebug configration for remote debugging
 COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
+
+#####################################
+# Redis extension:
+#####################################
+
+ARG INSTALL_REDIS_EXTENSION=false
+RUN if [ ${INSTALL_REDIS_EXTENSION} = true ]; then \
+    # Install the Redis extension
+    pecl install -o -f redis-2.2.8 \
+    &&  rm -rf /tmp/pear \
+    &&  echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
+;fi
+
+# Copy xdebug configration for remote debugging
+# COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 #####################################
 # MongoDB:
 #####################################
