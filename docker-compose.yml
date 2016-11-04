@@ -251,6 +251,15 @@ services:
         links:
             - beanstalkd
 
+### Gulp Container ############################
+
+    gulp-console:
+        build: ./gulp-console
+        volumes_from:
+            - volumes_source
+        links:
+            - workspace
+
 ### Caddy Server Container ##################################
 
     caddy:
@@ -314,6 +323,7 @@ services:
         image: tianon/true
         volumes:
             - ../server:/var/www/laravel
+            - ../client:/tmp/node-build
 
 ### Databases Data Container ################################
 
