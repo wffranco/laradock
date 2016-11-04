@@ -54,6 +54,7 @@ RUN groupadd -r elasticsearch -g ${ES_GID} \
 		openjdk-8-jdk \
  && apt-get clean
 
+# RUN /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch x-pack
 
 ### install Logstash
 
@@ -100,6 +101,7 @@ ADD ./kibana.yml ${KIBANA_HOME}/config/kibana.yml
 RUN sed -i -e 's#^KIBANA_HOME=$#KIBANA_HOME='$KIBANA_HOME'#' /etc/init.d/kibana \
  && chmod +x /etc/init.d/kibana
 
+# RUN /opt/kibana/bin/kibana-plugin install x-pack
 
 ###############################################################################
 #                               CONFIGURATION

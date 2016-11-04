@@ -68,6 +68,14 @@ services:
         volumes_from:
             - volumes_data
 
+    nginx-elk:
+        build: ./nginx-elk
+        container_name: nginx-elk
+        ports:
+          - "8088:8088"
+        links:
+            - elk
+
 ### Nginx Server Container ##################################
 
     nginx:
