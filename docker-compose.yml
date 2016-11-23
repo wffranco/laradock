@@ -41,6 +41,7 @@ services:
                 - PGID=1000
                 - NODE_VERSION=stable
                 - TZ=UTC
+        command: "composer --no-dev --no-interaction --no-progress --no-scripts --prefer-dist --optimize-autoloader install"
         volumes_from:
             - volumes_source
         extra_hosts:
@@ -66,7 +67,6 @@ services:
                 - INSTALL_AEROSPIKE_EXTENSION=false
                 - INSTALL_REDIS_EXTENSION=true
             dockerfile: Dockerfile-56
-        command: "su - tms -s /bin/bash -c '/usr/bin/php /opt/composer/composer.phar --no-dev --no-interaction --no-progress --no-scripts --prefer-dist --optimize-autoloader install'"
         volumes_from:
             - volumes_source
         expose:
