@@ -16,7 +16,7 @@ ADD server.ini /etc/hhvm/server.ini
 
 RUN usermod -u 1000 www-data
 
-WORKDIR /var/www/laravel
+WORKDIR /var/www/tms
 
 CMD ["/usr/bin/hhvm", "-m", "server", "-c", "/etc/hhvm/server.ini"]
 

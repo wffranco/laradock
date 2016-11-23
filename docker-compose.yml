@@ -2,6 +2,25 @@ version: '2'
 
 services:
 
+  ### GULP Container ############################
+
+    gulp-console:
+        build:
+            context: ../.
+            dockerfile: ./laradock/gulp-console/Dockerfile
+        # command: "su - tms -s /bin/bash -c 'gulp client && gulp super && gulp school'"
+        command: "su - tms -s /bin/bash -c 'gulp watch_dev'"
+        volumes:
+            - /home/tms/node_modules
+            - ../client:/home/tms/client
+            - ../school:/home/tms/school
+            - ../super:/home/tms/super
+            - ../config:/home/tms/config
+            - ../gulpfile.js:/home/tms/gulpfile.js
+            - ./gulp-console/docker.json:/home/tms/config/docker.json
+        volumes_from:
+            - volumes_source
+
 ### Workspace Utilities Container ###########################
 
     workspace:
@@ -29,6 +48,8 @@ services:
         ports:
            - "2222:22"
         tty: true
+        links:
+            - gulp-console
 
 ### PHP-FPM Container #######################################
 
@@ -308,12 +329,13 @@ services:
         links:
             - php-fpm
 
+
 ### Laravel Application Code Container ######################
 
     volumes_source:
         image: tianon/true
         volumes:
-            - ../server:/var/www/laravel
+            - ../server:/var/www/tms
 
 ### Databases Data Container ################################
 
