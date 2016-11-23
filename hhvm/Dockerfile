@@ -10,7 +10,7 @@ RUN apt-get update -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /var/www/laravel
+RUN mkdir -p /var/www/tms
 
 ADD server.ini /etc/hhvm/server.ini
 

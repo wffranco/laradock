@@ -241,7 +241,7 @@ Note: In this case the folder structure will be like this:
 	- project2
 ```
 
-**Note:** if you are using this folder structure don't forget to edit the `docker-compose.yml` file to map to your Laravel directory once you have it (example: `- ../project1/:/var/www/laravel`). "You will need to stop and re-run your docker-compose command for the changes to take place".
+**Note:** if you are using this folder structure don't forget to edit the `docker-compose.yml` file to map to your Laravel directory once you have it (example: `- ../project1/:/var/www/tms`). "You will need to stop and re-run your docker-compose command for the changes to take place".
 
 <a name="Usage"></a>
 ## Usage
@@ -744,13 +744,13 @@ For more about the Laravel installation click [here](https://laravel.com/docs/ma
 
 By default LaraDock assumes the Laravel application is living in the parent directory of the laradock folder.
 
-Since the new Laravel application is in the `my-cool-app` folder, we need to replace `../:/var/www/laravel` with `../my-cool-app/:/var/www/laravel`, as follow:
+Since the new Laravel application is in the `my-cool-app` folder, we need to replace `../:/var/www/tms` with `../my-cool-app/:/var/www/tms`, as follow:
 
 ```yaml
     application:
         build: ./application
         volumes:
-            - ../my-cool-app/:/var/www/laravel
+            - ../my-cool-app/:/var/www/tms
     ...
 ```
 4 - Go to that folder and start working..
@@ -1064,7 +1064,7 @@ We also recommend [setting the timezone in Laravel](http://www.camroncade.com/ma
 You can add your cron jobs to `workspace/crontab/root` after the `php artisan` line.
 
 ```
-* * * * * php /var/www/laravel/artisan schedule:run >> /dev/null 2>&1
+* * * * * php /var/www/tms/artisan schedule:run >> /dev/null 2>&1
 
 # Custom cron
 * * * * * root echo "Every Minute" > /var/log/cron.log 2>&1

@@ -1,1 +1,1 @@
-* * * * * php /var/www/laravel/artisan schedule:run >> /dev/null 2>&1
+* * * * * php /var/www/tms/artisan schedule:run >> /dev/null 2>&1

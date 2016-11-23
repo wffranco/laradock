@@ -79,7 +79,11 @@ RUN if [ ${COMPOSER_GLOBAL_INSTALL} = true ]; then \
 #####################################
 USER root
 
+ARG INSTALL_CRON=false
 COPY ./crontab /var/spool/cron/crontabs
+RUN if [ ${INSTALL_CRON} = false ]; then \
+    rm /var/spool/cron/crontabs/root \
+;fi
 
 #####################################
 # xDebug:
@@ -91,7 +95,7 @@ RUN if [ ${INSTALL_XDEBUG} = true ]; then \
     apt-get update && \
     apt-get install -y --force-yes php5.6-xdebug && \
     sed -i 's/^/;/g' /etc/php/5.6/cli/conf.d/20-xdebug.ini && \
-    echo "alias phpunit='php -dzend_extension=xdebug.so /var/www/laravel/vendor/bin/phpunit'" >> ~/.bashrc \
+    echo "alias phpunit='php -dzend_extension=xdebug.so /var/www/tms/vendor/bin/phpunit'" >> ~/.bashrc \
 ;fi
 # ADD for REMOTE debugging
 COPY ./xdebug.ini /etc/php/5.6/cli/conf.d/xdebug.ini

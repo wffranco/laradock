@@ -50,7 +50,7 @@ services:
     volumes_source:
         image: tianon/true
         volumes:
-            - ../:/var/www/laravel
+            - ../:/var/www/tms
 
 ### Databases Data Container ################################
 
