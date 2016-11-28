@@ -44,8 +44,8 @@ MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 # Add a non-root user to prevent files being created with root permissions on host machine.
 ARG PUID=1000
 ARG PGID=1000
-RUN groupadd -g $PGID laradock && \
-    useradd -u $PUID -g laradock -m laradock
+RUN groupadd -g $PGID tms && \
+    useradd -u $PUID -g tms -m tms
 
 #####################################
 # Set Timezone
@@ -60,11 +60,11 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #####################################
 
 # Add the composer.json
-COPY ./composer.json /home/laradock/.composer/composer.json
+COPY ./composer.json /home/tms/.composer/composer.json
 
-# Make sure that ~/.composer belongs to laradock
-RUN chown -R laradock:laradock /home/laradock/.composer
-USER laradock
+# Make sure that ~/.composer belongs to tms
+RUN chown -R tms:tms /home/tms/.composer
+USER tms
 
 # Check if global install need to be ran
 ARG COMPOSER_GLOBAL_INSTALL=false
@@ -159,7 +159,7 @@ RUN if [ ${INSTALL_DRUSH} = true ]; then \
     drush core-status \
 ;fi
 
-USER laradock
+USER tms
 
 #####################################
 # Node / NVM:
@@ -170,7 +170,7 @@ ARG NODE_VERSION=stable
 ENV NODE_VERSION ${NODE_VERSION}
 ARG INSTALL_NODE=false
 ENV INSTALL_NODE ${INSTALL_NODE}
-ENV NVM_DIR /home/laradock/.nvm
+ENV NVM_DIR /home/tms/.nvm
 RUN if [ ${INSTALL_NODE} = true ]; then \
     # Install nvm (A Node Version Manager)
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.6/install.sh | bash && \
@@ -194,7 +194,7 @@ USER root
 
 RUN if [ ${INSTALL_NODE} = true ]; then \
     echo "" >> ~/.bashrc && \
-    echo 'export NVM_DIR="/home/laradock/.nvm"' >> ~/.bashrc && \
+    echo 'export NVM_DIR="/home/tms/.nvm"' >> ~/.bashrc && \
     echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.bashrc \
 ;fi
 
@@ -202,7 +202,7 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
 # YARN:
 #####################################
 
-USER laradock
+USER tms
 
 ARG INSTALL_YARN=false
 ENV INSTALL_YARN ${INSTALL_YARN}
@@ -218,7 +218,7 @@ USER root
 
 RUN if [ ${INSTALL_YARN} = true ]; then \
     echo "" >> ~/.bashrc && \
-    echo 'export YARN_DIR="/home/laradock/.yarn"' >> ~/.bashrc && \
+    echo 'export YARN_DIR="/home/tms/.yarn"' >> ~/.bashrc && \
     echo 'export PATH="$YARN_DIR/bin:$PATH"' >> ~/.bashrc \
 ;fi
 
