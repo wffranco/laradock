@@ -60,10 +60,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #####################################
 
 # Add the composer.json
-COPY ./composer.json /home/tms/.composer/composer.json
+# COPY ../server/composer.json /home/tms/.composer/composer.json
 
 # Make sure that ~/.composer belongs to tms
-RUN chown -R tms:tms /home/tms/.composer
+RUN mkdir /home/tms/.composer && chown -R tms:tms /home/tms/.composer
 USER tms
 
 # Check if global install need to be ran
