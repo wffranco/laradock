@@ -9,7 +9,9 @@ services:
             context: ../.
             dockerfile: ./laradock/gulp-console/Dockerfile
         # command: "su - tms -s /bin/bash -c 'gulp client && gulp super && gulp school'"
-        command: "su - tms -s /bin/bash -c 'gulp super && gulp school' -c 'gulp watch_dev'"
+        # command: "su - tms -s /bin/bash -c 'gulp super && gulp school' -c 'gulp watch_dev'"
+        # command: "su - tms -s /bin/bash -c 'gulp watch_dev'"
+        command: "tail -f /var/log/dmesg"
         volumes:
             - /home/tms/node_modules
             - ../client:/home/tms/client
@@ -41,7 +43,7 @@ services:
                 - PGID=1000
                 - NODE_VERSION=stable
                 - TZ=UTC
-        command: "su - tms -s /bin/bash -c 'cd /var/www/tms && composer --no-dev --no-interaction --no-progress --no-scripts --prefer-dist --optimize-autoloader install' -c 'tail -f /dev/null'"
+        # command: "composer --no-dev --no-interaction --no-progress --no-scripts --prefer-dist --optimize-autoloader install"
         volumes_from:
             - volumes_source
         extra_hosts:
