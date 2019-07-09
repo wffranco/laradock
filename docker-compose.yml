@@ -43,7 +43,7 @@ services:
                 - PGID=1000
                 - NODE_VERSION=stable
                 - TZ=UTC
-        # command: "composer --no-dev --no-interaction --no-progress --no-scripts --prefer-dist --optimize-autoloader install"
+        command: "composer --no-dev --no-interaction --no-progress --no-scripts --prefer-dist --optimize-autoloader install"
         volumes_from:
             - volumes_source
         extra_hosts:

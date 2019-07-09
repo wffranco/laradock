@@ -85,6 +85,8 @@ RUN if [ ${INSTALL_CRON} = false ]; then \
     rm /var/spool/cron/crontabs/root \
 ;fi
 
+RUN pecl channel-update pecl.php.net
+
 #####################################
 # xDebug:
 #####################################
@@ -92,10 +94,8 @@ RUN if [ ${INSTALL_CRON} = false ]; then \
 ARG INSTALL_XDEBUG=false
 RUN if [ ${INSTALL_XDEBUG} = true ]; then \
     # Load the xdebug extension only with phpunit commands
-    apt-get update && \
-    apt-get install -y --force-yes php5.6-xdebug && \
-    sed -i 's/^/;/g' /etc/php/5.6/cli/conf.d/20-xdebug.ini && \
-    echo "alias phpunit='php -dzend_extension=xdebug.so /var/www/tms/vendor/bin/phpunit'" >> ~/.bashrc \
+    pecl install xdebug-2.5.5 && \
+    docker-php-ext-enable xdebug \
 ;fi
 # ADD for REMOTE debugging
 COPY ./xdebug.ini /etc/php/5.6/cli/conf.d/xdebug.ini
