@@ -91,14 +91,14 @@ RUN pecl channel-update pecl.php.net
 # xDebug:
 #####################################
 
-ARG INSTALL_XDEBUG=false
-RUN if [ ${INSTALL_XDEBUG} = true ]; then \
+# ARG INSTALL_XDEBUG=false
+# RUN if [ ${INSTALL_XDEBUG} = true ]; then \
     # Load the xdebug extension only with phpunit commands
-    pecl install xdebug-2.5.5 && \
-    docker-php-ext-enable xdebug \
-;fi
+    # pecl install xdebug-2.5.5 && \
+    # docker-php-ext-enable xdebug \
+# ;fi
 # ADD for REMOTE debugging
-COPY ./xdebug.ini /etc/php/5.6/cli/conf.d/xdebug.ini
+# COPY ./xdebug.ini /etc/php/5.6/cli/conf.d/xdebug.ini
 
 
 #####################################

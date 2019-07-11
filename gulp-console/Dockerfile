@@ -42,5 +42,5 @@ RUN cd $HOME/client && bower install --allow-root && bower update --allow-root
 RUN chown -R tms:tms $HOME
 
 # Compile all JS/CSS
-USER tms
-RUN cd $HOME; HOME=$HOME TEMP=/tmp bash -c 'gulp client && gulp super && gulp school'
+# USER tms
+# RUN cd $HOME; HOME=$HOME TEMP=/tmp bash -c 'gulp client && gulp super && gulp school'
