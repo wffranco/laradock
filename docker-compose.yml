@@ -10,8 +10,8 @@ services:
             dockerfile: ./laradock/gulp-console/Dockerfile
         # command: "su - tms -s /bin/bash -c 'gulp client && gulp super && gulp school'"
         # command: "su - tms -s /bin/bash -c 'gulp super && gulp school' -c 'gulp watch_dev'"
-        # command: "su - tms -s /bin/bash -c 'gulp watch_dev'"
-        command: "tail -f /var/log/dmesg"
+        command: "su - tms -s /bin/bash -c 'gulp watch_dev'"
+        # command: "tail -f /var/log/dmesg"
         volumes:
             - /home/tms/node_modules
             - ../client:/home/tms/client
