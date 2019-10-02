@@ -1,4 +1,4 @@
-FROM webdevops/apache:ubuntu-16.04
+FROM webdevops/apache@sha256:ad02a6897f26fa089b773ee675971c3c27d5bf231a3945009f0c1f893f62a6a5
 
 MAINTAINER Eric Pfeiffer <computerfr33k@users.noreply.github.com>
 

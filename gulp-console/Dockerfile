@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu@sha256:e4a134999bea4abb4a27bc437e6118fdddfb172e1b9d683129b74d254af51675
 
 MAINTAINER Latchezar Hristov
 
