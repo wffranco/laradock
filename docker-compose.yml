@@ -8,10 +8,10 @@ services:
         build:
             context: ../.
             dockerfile: ./laradock/gulp-console/Dockerfile
-        # command: "su - tms -s /bin/bash -c 'gulp client && gulp super && gulp school'"
+        command: "su - tms -s /bin/bash -c 'gulp client && gulp super && gulp school'"
         # command: "su - tms -s /bin/bash -c 'gulp super && gulp school' -c 'gulp watch_dev'"
         # command: "su - tms -s /bin/bash -c 'gulp watch_dev'"
-        command: "tail -f /var/log/dmesg"
+        # command: "tail -f /var/log/dmesg"
         volumes:
             - /home/tms/node_modules
             - ../client:/home/tms/client
@@ -48,7 +48,7 @@ services:
             - volumes_source
         extra_hosts:
             # IMPORTANT: Replace with your Docker Host IP (will be appended to /etc/hosts)
-            - "newtms.dev:192.168.65.1"
+            - "newtms.com:192.168.65.2"
         ports:
            - "2222:22"
         tty: true
@@ -77,7 +77,7 @@ services:
             - workspace
         extra_hosts:
             # IMPORTANT: Replace with your Docker Host IP (will be appended to /etc/hosts)
-            - "newtms.dev:192.168.65.1"
+            - "newtms.com:192.168.65.2"
         environment:
             # IMPORTANT: Set the Remote Interpreter entry matching name to `laravel`
             - PHP_IDE_CONFIG=serverName=laravel
