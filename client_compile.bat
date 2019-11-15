@@ -1,0 +1,1 @@
+docker run --rm --volumes-from 4cb2bb81d451 --volumes-from 79c5a738bb9a -i -t tms_gulp-console /bin/bash -c "su - tms -s /bin/bash -c 'gulp client'"
