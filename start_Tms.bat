@@ -1,1 +1,1 @@
-docker-compose -p tms up -d apache2 mysql php-fpm
+docker-compose -p tms up -d apache2 php-fpm
