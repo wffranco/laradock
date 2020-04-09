@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11095a0a5b996a3a84f62c230fe9e62d",
+    "content-hash": "2e4ae87970080db32fb7bb4870655c14",
     "packages": [
         {
             "name": "aoberoi/json-works",
@@ -226,6 +226,47 @@
             "time": "2015-10-28T18:49:43+00:00"
         },
         {
+            "name": "chargeover/redlock-php",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chargeover/redlock-php.git",
+                "reference": "0a2011af0e6593a1a01082cab4caa884ea3a4988"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chargeover/redlock-php/zipball/0a2011af0e6593a1a01082cab4caa884ea3a4988",
+                "reference": "0a2011af0e6593a1a01082cab4caa884ea3a4988",
+                "shasum": ""
+            },
+            "require": {
+                "colinmollenhour/credis": "^1.7",
+                "php": ">=5.4.0"
+            },
+            "suggest": {
+                "ext-redis": "Native PHP extension for Redis connectivity. Credis will automatically utilize when available."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RedLock\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Ronny Lopez",
+                    "email": "ronny@tangotree.io"
+                },
+                {
+                    "name": "Keith Palmer",
+                    "email": "keith@ChargeOver.com"
+                }
+            ],
+            "description": "Redis distributed locks in PHP",
+            "time": "2017-10-31T15:38:14+00:00"
+        },
+        {
             "name": "classpreloader/classpreloader",
             "version": "3.2.0",
             "source": {
@@ -280,6 +321,46 @@
             "time": "2017-12-10T11:40:39+00:00"
         },
         {
+            "name": "colinmollenhour/credis",
+            "version": "1.11.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colinmollenhour/credis.git",
+                "reference": "bd1da4698ab1918477f9e71e5ff0062b9a345008"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/bd1da4698ab1918477f9e71e5ff0062b9a345008",
+                "reference": "bd1da4698ab1918477f9e71e5ff0062b9a345008",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Client.php",
+                    "Cluster.php",
+                    "Sentinel.php",
+                    "Module.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Mollenhour",
+                    "email": "colin@mollenhour.com"
+                }
+            ],
+            "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
+            "homepage": "https://github.com/colinmollenhour/credis",
+            "time": "2019-11-26T18:09:45+00:00"
+        },
+        {
             "name": "container-interop/container-interop",
             "version": "1.2.0",
             "source": {
@@ -308,6 +389,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
+            "abandoned": "psr/container",
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
@@ -1420,6 +1502,7 @@
                 }
             ],
             "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
+            "abandoned": true,
             "time": "2015-05-20T03:37:09+00:00"
         },
         {
@@ -1470,6 +1553,7 @@
                 "Guzzle",
                 "stream"
             ],
+            "abandoned": true,
             "time": "2014-10-12T19:18:40+00:00"
         },
         {
@@ -1604,6 +1688,7 @@
                     "homepage": "http://www.acci.cz"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2014-04-08T15:00:19+00:00"
         },
         {
@@ -1648,6 +1733,7 @@
                     "homepage": "http://www.acci.cz/"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2015-04-20T18:58:01+00:00"
         },
         {
@@ -1821,6 +1907,7 @@
                 "serialize",
                 "tokenizer"
             ],
+            "abandoned": "opis/closure",
             "time": "2018-03-21T22:21:57+00:00"
         },
         {
@@ -2547,6 +2634,7 @@
                 "cron",
                 "schedule"
             ],
+            "abandoned": "dragonmantank/cron-expression",
             "time": "2017-01-23T04:29:33+00:00"
         },
         {
@@ -3442,7 +3530,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/studysocial/omnipay-stripe",
-                "reference": "66168c905b293d76f3a81e9cb6f700fb9bfb4494"
+                "reference": "30527a94a72c3155513464a5fa8bd283a9bb72c1"
             },
             "require": {
                 "omnipay/common": "~2.0"
@@ -3484,7 +3572,7 @@
                 "payment",
                 "stripe"
             ],
-            "time": "2017-06-06T10:14:49+00:00"
+            "time": "2020-01-17T20:32:28+00:00"
         },
         {
             "name": "studysocial/php-saml",
@@ -4769,6 +4857,7 @@
                 "escaper",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-escaper",
             "time": "2018-04-25T15:48:53+00:00"
         },
         {
@@ -4824,6 +4913,7 @@
                 "zend",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-http",
             "time": "2018-04-26T21:04:50+00:00"
         },
         {
@@ -4879,6 +4969,7 @@
                 "json",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-json",
             "time": "2016-02-04T21:20:26+00:00"
         },
         {
@@ -4924,6 +5015,7 @@
                 "loader",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-loader",
             "time": "2018-04-30T15:20:54+00:00"
         },
         {
@@ -4970,6 +5062,7 @@
                 "stdlib",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-stdlib",
             "time": "2018-04-30T13:50:40+00:00"
         },
         {
@@ -5017,6 +5110,7 @@
                 "uri",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-uri",
             "time": "2018-04-30T13:40:08+00:00"
         },
         {
@@ -5088,6 +5182,7 @@
                 "validator",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-validator",
             "time": "2018-02-01T17:05:33+00:00"
         },
         {
@@ -5131,6 +5226,7 @@
                 "push",
                 "zf2"
             ],
+            "abandoned": true,
             "time": "2015-12-09T22:55:07+00:00"
         },
         {
@@ -5174,6 +5270,7 @@
                 "push",
                 "zf2"
             ],
+            "abandoned": true,
             "time": "2017-01-17T13:57:50+00:00"
         }
     ],
@@ -5815,6 +5912,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2015-10-02T06:51:40+00:00"
         },
         {
