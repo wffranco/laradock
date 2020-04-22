@@ -1,0 +1,1 @@
+docker run --rm --volumes-from tms_volumes_source_1 --volumes-from tms_gulp-console_1 -i -t tms_gulp-console /bin/bash -c "su - tms -s /bin/bash -c 'gulp watch_dev_super'"
