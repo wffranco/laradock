@@ -171,4 +171,6 @@ WORKDIR /var/www/tms
 
 CMD ["php-fpm"]
 
+RUN docker-php-ext-install mysqli
+
 EXPOSE 9000
