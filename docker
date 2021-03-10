@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+DOCKER_PATH="$(pwd)"
+export DOCKER_PATH="${DOCKER_PATH##*/}"
+
+NAME="$(grep -E DOCKER_NAME=.+ .env | cut -c13-)"
+[[ -z $NAME ]] && NAME=laradock
+
+CYAN='\033[0;36m'
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+WHITE='\033[1;37m'
+NC='\033[0m'
+
+if [ ! -f "./.env" ]; then
+  echo -e "${RED}.env${NC} file does not exist..."
+  echo -e "Copying ${CYAN}.env.example${NC}..."
+  cp -f ./.env.example ./.env
+  [ -f "./.env" ] && echo -e "${GREEN}Copied successfully${NC}..."
+fi
+
+if [[ "$1" == gulp ]]; then
+  if [[ ! -d "../node_modules" ]] || [[ "$2" == --pre ]]; then
+    docker-compose -p $NAME run --rm --no-deps gulp-preinstall npm install
+  fi
+
+  # docker-compose -p tms run --rm --volumes-from tms_volumes_source_1 --volumes-from tms_gulp-console_1 -i -t tms_gulp-console /bin/bash -c "su - tms -s /bin/bash -c 'gulp client'"
+  docker-compose -p $NAME run --rm --no-deps gulp-console /bin/bash -c "su - tms -s /bin/bash -c 'gulp client'"
+  exit
+fi
+
+if [[ "$1" == up ]]; then
+  # IS_UP="$(docker-compose -p $NAME ps | grep 'tms_')"
+  # if [[ ! -z IS_UP ]]; then
+  #   ./docker down
+  # fi
+
+  [[ "$(grep ENABLE_APACHE= .env | grep -E '=true|=1' | cut -c1-6)" == ENABLE ]] && APACHE=apache2
+  [[ "$(grep ENABLE_PHP= .env | grep -E '=true|=1' | cut -c1-6)" == ENABLE ]] && PHP=php-fpm
+  [[ "$(grep ENABLE_MYSQL= .env | grep -E '=true|=1' | cut -c1-6)" == ENABLE ]] && MYSQL=mysql
+  docker-compose -p $NAME $@ $APACHE $PHP $MYSQL
+else
+  docker-compose -p $NAME $@
+fi
+

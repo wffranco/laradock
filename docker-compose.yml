@@ -2,12 +2,21 @@ version: '2'
 
 services:
 
-  ### GULP Container ############################
+### GULP Pre Install ############################
+
+    gulp-preinstall:
+        image: node:10
+        working_dir: /app
+        volumes:
+            - ..:/app
+        command: "npm install"
+
+### GULP Container ############################
 
     gulp-console:
         build:
-            context: ../.
-            dockerfile: ./laradock/gulp-console/Dockerfile
+            context: ..
+            dockerfile: ./${DOCKER_PATH:-laradock}/gulp-console/Dockerfile
         command: "su - tms -s /bin/bash -c 'gulp client && gulp super && gulp school'"
         # command: "su - tms -s /bin/bash -c 'gulp super && gulp school' -c 'gulp watch_dev'"
         # command: "su - tms -s /bin/bash -c 'gulp watch_dev'"
@@ -52,8 +61,8 @@ services:
         ports:
            - "2222:22"
         tty: true
-        links:
-            - gulp-console
+        # links:
+        #     - gulp-console
 
 ### PHP-FPM Container #######################################
 

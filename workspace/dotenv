@@ -5,6 +5,7 @@ HOME="/home/deploy"
 APP_ENV="debug"
 APP_DEBUG="true"
 APP_KEY="SomeRandomStringDFG456HF"
+APPLE_CLIENT_ID="asdl;kfders"
 DB_HOST=mysql
 DB_DATABASE=newtms
 DB_USERNAME="root"
@@ -71,3 +72,15 @@ ALLOW_TESTING=1
 
 MOBILE_APP_GOOGLE_LINK="https://goo.gl/PeFLOl"
 MOBILE_APP_APPLE_LINK="itms-apps://itunes.apple.com/app/id539488791"
+
+TMS_SCHOOL_ADMIN_PASS="tms$ch@@l@dmin"
+
+NEW_TE_COURSE_URL="http://tutoressentials.com/?sfwd-courses=tutor-essentials-course"
+NEW_TE_ROOT="http://tutessentdev.wpengine.com/",
+NEW_TE_API_URL="https://tutoressentials.com/wp-json/tutessentials/v1/"
+NEW_TE_API_KEY=""
+
+NEW_OTE_COURSE_URL="http://onlinetutoringessentials.com/?sfwd-courses=tutor-essentials-course"
+NEW_OTE_ROOT="http://onlinetutoringessentials.wpengine.com/",
+NEW_OTE_API_URL="https://onlinetutoringessentials.com/wp-json/tutessentials/v1/"
+NEW_OTE_API_KEY=""
