@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
-DOCKER_PATH="$(pwd)"
-export DOCKER_PATH="${DOCKER_PATH##*/}"
-
-NAME="$(grep -E DOCKER_NAME=.+ .env | cut -c13-)"
-[[ -z $NAME ]] && NAME=laradock
-
-CYAN='\033[0;36m'
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-WHITE='\033[1;37m'
-NC='\033[0m'
-
 if [ ! -f "./.env" ]; then
   echo -e "${RED}.env${NC} file does not exist..."
   echo -e "Copying ${CYAN}.env.example${NC}..."
   cp -f ./.env.example ./.env
   [ -f "./.env" ] && echo -e "${GREEN}Copied successfully${NC}..."
 fi
+
+LARADOCK_PATH="$(pwd)"
+export DOCKER_PATH="${LARADOCK_PATH##*/}"
+
+NAME="$(grep -E DOCKER_NAME=.+ .env | cut -c13-)"
+[[ -z $NAME ]] && NAME=$DOCKER_PATH
+
+CYAN='\033[0;36m'
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+WHITE='\033[1;37m'
+NC='\033[0m'
 
 if [[ "$1" == gulp ]]; then
   if [[ ! -d "../node_modules" ]] || [[ "$2" == --pre ]]; then
