@@ -18,6 +18,7 @@ Laradock is configured to run Laravel Apps by default, and it can be modifyed to
 - [Requirements](#Requirements)
 - [Installation](#Installation)
 - [Usage](#Usage)
+    - [Docker Shell Command](#DockerShellCommand)
 - [Documentation](#Documentation)
 	- [Docker](#Docker)
 		- [List current running Containers](#List-current-running-Containers)
@@ -258,6 +259,51 @@ DB_HOST=mysql
 <br>
 **Debugging**: if you are facing any problem here check the [Debugging](#debugging) section.
 
+
+<a name="DockerShellCommand"></a>
+### Docker Shell Command
+
+In Mac/Linux, you can use the docker shell command tool.
+
+Command line:
+```bash
+./docker <options>
+```
+- You can use the same options in a normal docker-compose command.
+- On the first run, you have to wait until the gulp image stops, then you can run the project.
+- By default, the shell command launch the servises enabled in the `.env` file. So if you want to enable services, you should set the value to 1/true, otherwise is disabled.
+
+For developers, you need to:
+- Replace the content of `laradock/workspace/dotenv` with `laradock/workspace/dotenv.dev`.
+- For email testing, you need a mailtrap account and copy the configuration in the `dotenv` file.
+
+After configure all, if you want to run tms, just need to run:
+```bash
+./docker up -d
+```
+And to stop it, run:
+```bash
+./docker down
+```
+
+If you make changes in the `package.json`, you need to pre-compile gulp:
+```bash
+./docker gulp-pre
+```
+And when you make changes in any frontend, you can restart the docker gulp image, or run the gulp command:
+```bash
+#compile all (default, the same if you restart the gulp image)
+./docker gulp
+
+#or if you don't want to recompile everithing, you can:
+
+#compile only the client
+./docker gulp client
+#compile only the super panel
+./docker gulp super
+#compile only the school panel
+./docker gulp school
+```
 
 <br>
 <a name="Documentation"></a>
