@@ -19,6 +19,14 @@ RED='\033[0;31m'
 WHITE='\033[1;37m'
 NC='\033[0m'
 
+if [[ "$2" == bash ]]; then
+  SERVICE="$1"
+  shift 2
+
+  docker-compose -p $NAME run --rm --no-deps $SERVICE /bin/bash $@
+  exit
+fi
+
 if [[ "$1" == gulp ]]; then
   if [[ ! -d "../node_modules" ]] || [[ "$2" == --pre ]]; then
     docker-compose -p $NAME run --rm --no-deps gulp-preinstall npm install
