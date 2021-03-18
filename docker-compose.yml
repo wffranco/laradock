@@ -11,6 +11,7 @@ services:
         working_dir: /home/tms
         volumes:
             - /home/tms
+            - ../package.json:/home/tms/package.json
             - ../node_modules:/home/tms/node_modules
         command: "npm install"
 
