@@ -5,10 +5,13 @@ services:
 ### GULP Pre Install ############################
 
     gulp-preinstall:
-        image: node:10
-        working_dir: /app
+        build:
+            context: ..
+            dockerfile: ./${DOCKER_PATH:-laradock}/gulp-console/Dockerfile.pre
+        working_dir: /home/tms
         volumes:
-            - ..:/app
+            - /home/tms
+            - ../node_modules:/home/tms/node_modules
         command: "npm install"
 
 ### GULP Container ############################

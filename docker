@@ -27,13 +27,21 @@ if [[ "$2" == bash ]]; then
   exit
 fi
 
-if [[ "$1" == gulp ]]; then
-  if [[ ! -d "../node_modules" ]] || [[ "$2" == --pre ]]; then
-    docker-compose -p $NAME run --rm --no-deps gulp-preinstall npm install
-  fi
+if [[ ! -d "../node_modules" ]] || [[ "$1" == gulp-pre ]]; then
+  echo "Preinstalation for gulp..."
+  docker-compose -p $NAME run --rm --no-deps gulp-preinstall npm install
+  [[ "$1" == gulp-pre ]] && exit
+fi
 
-  # docker-compose -p tms run --rm --volumes-from tms_volumes_source_1 --volumes-from tms_gulp-console_1 -i -t tms_gulp-console /bin/bash -c "su - tms -s /bin/bash -c 'gulp client'"
-  docker-compose -p $NAME run --rm --no-deps gulp-console /bin/bash -c "su - tms -s /bin/bash -c 'gulp client'"
+if [[ "$1" == gulp ]]; then
+  shift 1
+
+  if [[ "$1" == client ]] || [[ "$1" == super ]] || [[ "$1" == school ]]; then
+    docker-compose -p $NAME run --rm --no-deps gulp-console /bin/bash -c "su - tms -s /bin/bash -c 'gulp $@'"
+  else
+    # docker-compose -p tms run --rm --volumes-from tms_volumes_source_1 --volumes-from tms_gulp-console_1 -i -t tms_gulp-console /bin/bash -c "su - tms -s /bin/bash -c 'gulp client'"
+    docker-compose -p $NAME run --rm --no-deps gulp-console /bin/bash -c "su - tms -s /bin/bash -c 'gulp client && gulp super && gulp school'"
+  fi
   exit
 fi
 
