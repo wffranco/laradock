@@ -19,7 +19,7 @@ RED='\033[0;31m'
 WHITE='\033[1;37m'
 NC='\033[0m'
 
-if [[ "$2" == bash ]]; then
+if [[ "$2" == bash ]] || [[ "$2" == shell ]]; then
   SERVICE="$1"
   shift 2
 
