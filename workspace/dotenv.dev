@@ -6,15 +6,22 @@ APP_ENV="debug"
 APP_DEBUG="true"
 APP_KEY="SomeRandomStringDFG456HF"
 APPLE_CLIENT_ID="asdl;kfders"
+
 DB_HOST=mysql
 DB_DATABASE=newtms
 DB_USERNAME="root"
 DB_PASSWORD="123MySQL101."
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
+MAIL_DRIVER="{$MAIL_MAILER}"
 MAIL_FROM_NAME="Tutor Matching Service"
 MAIL_FROM_MAIL="info@tutormatching.com"
-MAIL_DRIVER="log"
-MAIL_HOST="example.com"
-MAIL_PORT="25"
+
 CACHE_DRIVER="file"
 SESSION_DRIVER="cookie"
 QUEUE_DRIVER="sync"
