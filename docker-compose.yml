@@ -2,12 +2,25 @@ version: '2'
 
 services:
 
-  ### GULP Container ############################
+### GULP Pre Install ############################
+
+    gulp-preinstall:
+        build:
+            context: ..
+            dockerfile: ./${DOCKER_PATH:-laradock}/gulp-console/Dockerfile.pre
+        working_dir: /home/tms
+        volumes:
+            - /home/tms
+            - ../package.json:/home/tms/package.json
+            - ../node_modules:/home/tms/node_modules
+        command: "npm install"
+
+### GULP Container ############################
 
     gulp-console:
         build:
-            context: ../.
-            dockerfile: ./laradock/gulp-console/Dockerfile
+            context: ..
+            dockerfile: ./${DOCKER_PATH:-laradock}/gulp-console/Dockerfile
         command: "su - tms -s /bin/bash -c 'gulp client && gulp super && gulp school'"
         # command: "su - tms -s /bin/bash -c 'gulp super && gulp school' -c 'gulp watch_dev'"
         # command: "su - tms -s /bin/bash -c 'gulp watch_dev'"

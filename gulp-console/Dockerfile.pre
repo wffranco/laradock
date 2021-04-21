@@ -1,0 +1,21 @@
+FROM ubuntu@sha256:e4a134999bea4abb4a27bc437e6118fdddfb172e1b9d683129b74d254af51675
+
+MAINTAINER Latchezar Hristov
+
+ENV HOME=/home/tms
+
+RUN useradd --user-group --create-home --shell /bin/false tms
+
+WORKDIR $HOME
+
+RUN apt-get update &&\
+  apt-get install -y curl git
+
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+
+RUN apt-get -y install build-essential
+
+RUN apt-get -y install nodejs
+
+RUN mkdir .npm && chmod 777 .npm &&\
+  npm config set cache $(pwd)/.npm --global
